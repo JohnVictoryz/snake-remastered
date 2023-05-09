@@ -29,7 +29,7 @@ class SNAKE:
 	def draw_snake(self):
 		self.update_head_graphics()
 		self.update_tail_graphics()
-
+		
 		for index,block in enumerate(self.body):
 			x_pos = int(block.x * cell_size)
 			y_pos = int(block.y * cell_size)
@@ -62,14 +62,14 @@ class SNAKE:
 		elif head_relation == Vector2(-1,0): self.head = self.head_right
 		elif head_relation == Vector2(0,1): self.head = self.head_up
 		elif head_relation == Vector2(0,-1): self.head = self.head_down
-
+	
 	def update_tail_graphics(self):
 		tail_relation = self.body[-2] - self.body[-1]
 		if tail_relation == Vector2(1,0): self.tail = self.tail_left
 		elif tail_relation == Vector2(-1,0): self.tail = self.tail_right
 		elif tail_relation == Vector2(0,1): self.tail = self.tail_up
 		elif tail_relation == Vector2(0,-1): self.tail = self.tail_down
-
+	
 	def move_snake(self):
 		if self.new_block == True:
 			body_copy = self.body[:]
@@ -80,17 +80,16 @@ class SNAKE:
 			body_copy = self.body[:-1]
 			body_copy.insert(0,body_copy[0] + self.direction)
 			self.body = body_copy[:]
-
+	
 	def add_block(self):
 		self.new_block = True
-
 	def play_crunch_sound(self):
 		self.crunch_sound.play()
-
+		print("Crunch Sound played")
 	def reset(self):
 		self.body = [Vector2(5,10),Vector2(4,10),Vector2(3,10)]
 		self.direction = Vector2(0,0)
-
+		print("reseted")
 
 class FRUIT:
 	def __init__(self):
@@ -197,15 +196,19 @@ while True:
 			main_game.update()
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_w:
+				print("Key pressed w")
 				if main_game.snake.direction.y != 1:
 					main_game.snake.direction = Vector2(0,-1)
 			if event.key == pygame.K_d:
+				print("Key pressed d")
 				if main_game.snake.direction.x != -1:
 					main_game.snake.direction = Vector2(1,0)
 			if event.key == pygame.K_s:
+				print("Key pressed s")
 				if main_game.snake.direction.y != -1:
 					main_game.snake.direction = Vector2(0,1)
 			if event.key == pygame.K_a:
+				print("Key pressed a")
 				if main_game.snake.direction.x != 1:
 					main_game.snake.direction = Vector2(-1,0)
 
